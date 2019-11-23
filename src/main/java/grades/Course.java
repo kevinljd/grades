@@ -15,6 +15,10 @@ public class Course {
         this.assessments.add(a);
     }
 
+    public String getCourseCode() {
+        return courseCode;
+    }
+
     public int unaccountedWeighting() {
         int unaccounted = 0;
         for (Assessment a : assessments) {
