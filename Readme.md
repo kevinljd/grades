@@ -14,6 +14,11 @@ store the assessment structure in the software.
 - As a user, I should be able to print out my required target for each assessment, to attain a HD and
 above.
 
+## CLI Framework
+- Java CLI Framework
+- [OCLIF](https://medium.com/@jdxcode/12-factor-cli-apps-dd3c227a0e46)
+
+
 ## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
