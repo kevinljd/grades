@@ -53,7 +53,7 @@ public class Assessment {
 
     @Override
     public String toString() {
-        String str = name + ": " + mark + "/" + maxMark + "(weighting: " + weighting + "%)";
+        String str = name + ": " + mark + "/" + maxMark + " (weighting: " + weighting + "%)";
         return str;
     }
 }

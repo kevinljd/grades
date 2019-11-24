@@ -45,7 +45,8 @@ public class Semester {
         for (Course c : courses.values()) {
             str.append(i + 1);
             str.append(". ");
-            str.append(courses.get(i).getCourseCode());
+            str.append(c.getCourseCode());
+            str.append("\n");
             i++;
         }
         return str.toString();

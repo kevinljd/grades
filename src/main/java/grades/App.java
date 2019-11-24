@@ -45,8 +45,9 @@ public class App {
             System.out.println("1 - Add a course");
             System.out.println("2 - Choose a course");
             System.out.println("3 - Delete a course");
-            System.out.println("Select your options: ");
+            System.out.print("Select your options: ");
             choice = kb.nextInt();
+            kb.nextLine();
         } while (choice != 1 && choice != 2 && choice != 3);
 
         if (choice == 1) {
@@ -61,8 +62,9 @@ public class App {
 
     public void addCourse() {
         System.out.println();
-        System.out.println("Enter the course code: ");
-        String courseCode = kb.nextLine().toLowerCase();
+        System.out.print("Enter the course code: ");
+        String courseCode = kb.nextLine();
+        courseCode = courseCode.toLowerCase();
         currentSem.addCourse(courseCode);
         System.out.println(courseCode + " added.");
     }
@@ -77,7 +79,7 @@ public class App {
         }
 
         do {
-            System.out.println("Enter the course code: ");
+            System.out.print("Enter the course code: ");
             courseCode = kb.nextLine().toLowerCase();
         } while (!currentSem.checkIfCourseExist(courseCode));
         currentSem.deleteCourse(courseCode);
@@ -88,7 +90,7 @@ public class App {
         String courseCode;
         System.out.println();
         do {
-            System.out.println("Enter the course code: ");
+            System.out.print("Enter the course code: ");
             courseCode = kb.nextLine().toLowerCase();
         } while (!currentSem.checkIfCourseExist(courseCode));
         Course course = currentSem.getCourse(courseCode);
@@ -101,8 +103,9 @@ public class App {
             System.out.println("1 - Add an assessment");
             System.out.println("2 - Choose an assessment");
             System.out.println("3 - Delete an assessment");
-            System.out.println("Select your options: ");
+            System.out.print("Select your options: ");
             choice = kb.nextInt();
+            kb.nextLine();
         } while (choice != 1 && choice != 2 && choice != 3);
 
         if (choice == 1) {
@@ -117,14 +120,16 @@ public class App {
 
     public void addAssessment(Course course) {
         System.out.println();
-        System.out.println("Enter the assessment name: ");
-        String name = kb.nextLine().toLowerCase();
-        System.out.println("Enter the max mark possible: ");
+        System.out.print("Enter the assessment name: ");
+        String name = kb.nextLine();
+        name = name.toLowerCase();
+        System.out.print("Enter the max mark possible: ");
         int maxMark = kb.nextInt();
-        System.out.println("Enter the mark you got: ");
+        System.out.print("Enter the mark you got: ");
         int mark = kb.nextInt();
-        System.out.println("Enter the weighting: ");
+        System.out.print("Enter the weighting: ");
         int weighting = kb.nextInt();
+        kb.nextLine();
         course.addAssessment(new Assessment(name, maxMark, mark, weighting));
         System.out.println(name + " added.");
     }
@@ -140,8 +145,9 @@ public class App {
 
         System.out.println(course.toString());
         do {
-            System.out.println("Enter the index of the assessment to delete: ");
+            System.out.print("Enter the index of the assessment to delete: ");
             index = kb.nextInt();
+            kb.nextLine();
         } while (index > course.getAssessmentsSize() || index < 1);
         index--;
         Assessment deleted = course.deleteAssessment(index);
@@ -159,8 +165,9 @@ public class App {
 
         System.out.println(course.toString());
         do {
-            System.out.println("Enter the index of the assessment to inspect: ");
+            System.out.print("Enter the index of the assessment to inspect: ");
             index = kb.nextInt();
+            kb.nextLine();
         } while (index > course.getAssessmentsSize() || index < 1);
         index--;
         Assessment assessment = course.getAssessment(index);
@@ -174,29 +181,33 @@ public class App {
             System.out.println("2 - Edit the assessment mark");
             System.out.println("3 - Edit the assessment max mark");
             System.out.println("3 - Edit the assessment weighting");
-            System.out.println("Select your options: ");
+            System.out.print("Select your options: ");
             choice = kb.nextInt();
+            kb.nextLine();
         } while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
 
         if (choice == 1) {
             System.out.println();
-            System.out.println("Enter the updated assessment name");
+            System.out.print("Enter the updated assessment name");
             String name = kb.nextLine();
             assessment.setName(name);
         } else if (choice == 2) {
             System.out.println();
-            System.out.println("Enter the updated assessment mark");
+            System.out.print("Enter the updated assessment mark");
             int mark = kb.nextInt();
+            kb.nextLine();
             assessment.setMark(mark);
         } else if (choice == 3) {
             System.out.println();
-            System.out.println("Enter the updated assessment max mark");
+            System.out.print("Enter the updated assessment max mark");
             int maxMark = kb.nextInt();
+            kb.nextLine();
             assessment.setMaxMark(maxMark);
         } else if (choice == 4) {
             System.out.println();
-            System.out.println("Enter the updated assessment weighting");
+            System.out.print("Enter the updated assessment weighting");
             int weighting = kb.nextInt();
+            kb.nextLine();
             assessment.setWeighting(weighting);
         }
 
