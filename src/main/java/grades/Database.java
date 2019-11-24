@@ -32,7 +32,10 @@ public class Database {
             semesters.get(year)[semIndex] = new Semester(year, semester);
             return true;
         }
+
+//        semesters.get(year)[semIndex] = new Semester(year, semester);
         return false;
+//        return true;
     }
 
     public Semester getSemester(int year, int semester) {
@@ -42,6 +45,7 @@ public class Database {
             sem = semesters.get(year)[semIndex];
         } else {
             createSemester(year, semester);
+            sem = semesters.get(year)[semIndex];
         }
         return sem;
     }

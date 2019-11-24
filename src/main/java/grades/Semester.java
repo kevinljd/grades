@@ -30,6 +30,10 @@ public class Semester {
         return courses.get(name);
     }
 
+    public int getCoursesSize() {
+        return this.courses.size();
+    }
+
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();

@@ -11,9 +11,24 @@ public class Course {
         this.assessments = new ArrayList<>();
     }
 
+    public Assessment getAssessment(int index) {
+        return this.assessments.get(index);
+    }
+
     public void addAssessment(Assessment a) {
         this.assessments.add(a);
     }
+
+    public Assessment deleteAssessment(int index) {
+        Assessment temp = this.assessments.get(index);
+        this.assessments.remove(index);
+        return temp;
+    }
+
+    public int getAssessmentsSize() {
+        return this.assessments.size();
+    }
+
 
     public String getCourseCode() {
         return courseCode;

@@ -12,17 +12,17 @@ public class App {
     private Semester currentSem;
     private Scanner kb;
 
-    private App() {
+    public App() {
         db = new Database();
         currentSem = db.getSemester(getCurrentYear(), getCurrentSem());
         kb = new Scanner(System.in);
     }
 
-    private int getCurrentYear() {
+    public int getCurrentYear() {
         return Calendar.getInstance().get(Calendar.YEAR);
     }
 
-    private int getCurrentSem() {
+    public int getCurrentSem() {
         int month = Calendar.getInstance().get(Calendar.MONTH);
         int sem;
         if (month >= 7) {
@@ -70,6 +70,12 @@ public class App {
     public void deleteCourse() {
         String courseCode;
         System.out.println();
+
+        if (currentSem.getCoursesSize() < 1) {
+            System.out.println("There are no courses stored.");
+            return;
+        }
+
         do {
             System.out.println("Enter the course code: ");
             courseCode = kb.nextLine().toLowerCase();
@@ -100,11 +106,98 @@ public class App {
         } while (choice != 1 && choice != 2 && choice != 3);
 
         if (choice == 1) {
-            addAssessment();
+            addAssessment(course);
         } else if (choice == 2) {
-            inspectAssessment();
+            inspectAssessment(course);
         } else if (choice == 3) {
-            deleteAssessment();
+            deleteAssessment(course);
+        }
+
+    }
+
+    public void addAssessment(Course course) {
+        System.out.println();
+        System.out.println("Enter the assessment name: ");
+        String name = kb.nextLine().toLowerCase();
+        System.out.println("Enter the max mark possible: ");
+        int maxMark = kb.nextInt();
+        System.out.println("Enter the mark you got: ");
+        int mark = kb.nextInt();
+        System.out.println("Enter the weighting: ");
+        int weighting = kb.nextInt();
+        course.addAssessment(new Assessment(name, maxMark, mark, weighting));
+        System.out.println(name + " added.");
+    }
+
+    public void deleteAssessment(Course course) {
+        int index;
+        System.out.println();
+
+        if (course.getAssessmentsSize() < 1) {
+            System.out.println("There are no assessments stored.");
+            return;
+        }
+
+        System.out.println(course.toString());
+        do {
+            System.out.println("Enter the index of the assessment to delete: ");
+            index = kb.nextInt();
+        } while (index > course.getAssessmentsSize() || index < 1);
+        index--;
+        Assessment deleted = course.deleteAssessment(index);
+        System.out.println(deleted.getName() + " deleted.");
+    }
+
+    public void inspectAssessment(Course course) {
+        int index;
+        System.out.println();
+
+        if (course.getAssessmentsSize() < 1) {
+            System.out.println("There are no assessments stored.");
+            return;
+        }
+
+        System.out.println(course.toString());
+        do {
+            System.out.println("Enter the index of the assessment to inspect: ");
+            index = kb.nextInt();
+        } while (index > course.getAssessmentsSize() || index < 1);
+        index--;
+        Assessment assessment = course.getAssessment(index);
+        System.out.println();
+        System.out.println(assessment.toString());
+        System.out.println();
+
+        int choice;
+        do {
+            System.out.println("1 - Edit the assessment name");
+            System.out.println("2 - Edit the assessment mark");
+            System.out.println("3 - Edit the assessment max mark");
+            System.out.println("3 - Edit the assessment weighting");
+            System.out.println("Select your options: ");
+            choice = kb.nextInt();
+        } while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
+
+        if (choice == 1) {
+            System.out.println();
+            System.out.println("Enter the updated assessment name");
+            String name = kb.nextLine();
+            assessment.setName(name);
+        } else if (choice == 2) {
+            System.out.println();
+            System.out.println("Enter the updated assessment mark");
+            int mark = kb.nextInt();
+            assessment.setMark(mark);
+        } else if (choice == 3) {
+            System.out.println();
+            System.out.println("Enter the updated assessment max mark");
+            int maxMark = kb.nextInt();
+            assessment.setMaxMark(maxMark);
+        } else if (choice == 4) {
+            System.out.println();
+            System.out.println("Enter the updated assessment weighting");
+            int weighting = kb.nextInt();
+            assessment.setWeighting(weighting);
         }
 
 
